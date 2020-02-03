@@ -63,7 +63,7 @@ body {
 .toc {
   display: table;
   padding: 7px;
-  margin-left: 5%;
+  margin: 50px 5%;
 }
 
 .toc ul {
