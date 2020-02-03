@@ -10,7 +10,7 @@ const languages = [
     {
         abr: "en",
         name: "English"
-      },
+    },
   {
     abr: "de",
     name: "Deutsch"
@@ -54,8 +54,10 @@ onChange = e => {
 };
 
 newPage =(data)=> {
- var url = `${window.location.href.replace(/\/$/, '')}#${data.id}`;
+    
+ var url = `${window.location.href}#${data.id}`;
    window.open(url, '_blank');
+//    location.hash = hash
 }
 
 populateLangDropdown = () => {
@@ -69,7 +71,6 @@ populateLangDropdown = () => {
 getData = () => {
     localStorage.myTitle = params.title;
     localStorage.myLang = params.language;
-    console.log(localStorage.getItem("myTitle"), "localstorage")
   if (params.title || localStorage.getItem("myTitle")) {
     fetch(
       `https://${
@@ -143,7 +144,6 @@ getData = () => {
         });
       })
       .then(() => {
-        // location.assign("https://www.w3schools.com");
         let toc = "<h2> Contents </h2><ol>";
         let toc_levelOne = "<ol>";
         let toc_levelTwo = "<ol>";
@@ -152,13 +152,13 @@ getData = () => {
           toc += `<li><a name="${levelOne[i].h2}" onclick="newPage(${levelOne[i].h2})"> ${levelOne[i].innerText} </a>`;
           for (let j in levelTwo) {
             if (levelOne[i].num === levelTwo[j].num) {
-              toc_levelOne += `<li ><a name="${levelTwo[j].h3}" onclick="newPage(${levelOne[i].h2})"> ${levelTwo[j].innerText} </a> `;
+              toc_levelOne += `<li ><a name="${levelTwo[j].h3}" onclick="newPage(${levelTwo[j].h3})"> ${levelTwo[j].innerText} </a> `;
               for (let k in levelThree) {
                 if (
                   levelOne[i].num === levelThree[k].num &&
                   levelThree[k].i == j
                 ) {
-                  toc_levelTwo += `<li><a name="${levelThree[k].h4}"  onclick="newPage(${levelOne[i].h2})"> ${levelThree[k].innerText} </a> </li>`;
+                  toc_levelTwo += `<li><a name="${levelThree[k].h4}"  onclick="newPage(${levelThree[k].h4})"> ${levelThree[k].innerText} </a> </li>`;
                 }
                 if (k == levelThree.length - 1) {
                   toc_levelOne = toc_levelOne + toc_levelTwo + "</ol>";
